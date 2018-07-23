@@ -1,9 +1,10 @@
 package gqlerrors
 
 import (
+	"encoding/json"
 	"errors"
 
-	"github.com/graphql-go/graphql/language/location"
+	"github.com/equinux/graphql/language/location"
 )
 
 type ExtendedError interface {
