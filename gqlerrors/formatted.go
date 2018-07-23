@@ -18,6 +18,21 @@ type FormattedError struct {
 	Extensions map[string]interface{}    `json:"extensions,omitempty"`
 }
 
+// MarshalJSON implements custom JSON marshaling for the `FormattedError` type
+// in order to place the `ErrorExtensions` at the top level.
+func (g FormattedError) MarshalJSON() ([]byte, error) {
+	m := map[string]interface{}{}
+	for k, v := range g.Extensions {
+		m[k] = v
+	}
+	m["message"] = g.Message
+	m["locations"] = g.Locations
+	if g.Extensions != nil {
+		m["extensions"] = g.Extensions
+	}
+	return json.Marshal(m)
+}
+
 func (g FormattedError) Error() string {
 	return g.Message
 }
