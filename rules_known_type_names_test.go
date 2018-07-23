@@ -3,9 +3,9 @@ package graphql_test
 import (
 	"testing"
 
-	"github.com/graphql-go/graphql"
-	"github.com/graphql-go/graphql/gqlerrors"
-	"github.com/graphql-go/graphql/testutil"
+	"github.com/equinux/graphql"
+	"github.com/equinux/graphql/gqlerrors"
+	"github.com/equinux/graphql/testutil"
 )
 
 func TestValidate_KnownTypeNames_KnownTypeNamesAreValid(t *testing.T) {
