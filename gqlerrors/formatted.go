@@ -23,14 +23,14 @@ type FormattedError struct {
 // in order to place the `ErrorExtensions` at the top level.
 func (g FormattedError) MarshalJSON() ([]byte, error) {
 	m := map[string]interface{}{}
-	for k, v := range g.Extensions {
-		m[k] = v
+	if g.Extensions != nil {
+		for k, v := range g.Extensions {
+			m[k] = v
+		}
+		m["extensions"] = g.Extensions
 	}
 	m["message"] = g.Message
 	m["locations"] = g.Locations
-	if g.Extensions != nil {
-		m["extensions"] = g.Extensions
-	}
 	return json.Marshal(m)
 }
 
