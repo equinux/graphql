@@ -305,6 +305,9 @@ var Float = NewScalar(ScalarConfig{
 })
 
 func coerceString(value interface{}) interface{} {
+	if value == nil {
+		return nil
+	}
 	if v, ok := value.(*string); ok {
 		if v == nil {
 			return nil

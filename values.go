@@ -307,6 +307,9 @@ func isNullish(src interface{}) bool {
 		}
 		value = value.Elem()
 	}
+	if value.Kind() == reflect.Invalid {
+		return true
+	}
 	switch value.Kind() {
 	case reflect.String:
 		// if src is ptr type and len(string)=0, it returns false
